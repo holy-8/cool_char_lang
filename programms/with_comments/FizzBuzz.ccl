@@ -1,0 +1,169 @@
+/ Procedure 'C' prints out 2 or 1 digit POSITIVE number
+/ Arguments:
+/     GLOBAL n -  number to print
+/ Returns:
+/     -
+C {
+    / n - Number argument. Used as a counter.
+    / d - Used for temporary counting to 10. When equals 10, 1 is added to t, and d is set to 0.
+    / d is printed as a first digit (before tens).
+    / t - Tens (1, 2, 3...). If not 0, printed as a second digit (in front of d)
+    / x - 10
+    / z - Character '0' (48)
+    $n &n = n  &t &d
+    &z &x ^ +++++ = x
+    ^ x[$x* $x*] -- = z  /z = 48
+    $x $x* = x           /x = 10
+
+    ^ ?n    /if n == 0:
+        <z  /    print chr(z)
+        #;  /    return
+    = _     /pop()
+    (                       /while True:
+        $n - = n            /    n -= 1
+        $d + = d            /    d += 1
+        $x ?d               /    if d == 10:
+            $t + = t        /        t += 1
+            ^ = d;          /        d = 0
+        = _                 /    pop()
+        ^ ?n                /    if n == 0:
+            ?t              /        if t == 0:
+                $d $z* = d  /            d += 48
+                <d          /            print chr(d)
+                = _         /            pop()
+                #;          /            break
+            $t $z* = t      /        t += 48
+            <t              /        print chr(t)
+            $d $z* = d      /        d += 48
+            <d              /        print chr(d)
+            = _             /        pop()
+            #;              /        break
+        = _                 /    pop()
+    )
+}
+
+/ Procedure 'F' prints out 'Fizz'
+F {
+    / m - lowercase 'm' (109). Add 13 to get 'z', subtract 12 to get 'a'. Subtract 32 to convert to uppercase.
+    / c - current character to print
+    / s - space (32)
+    / n - newline (10)
+	
+	/ Text output
+    &m &c &s &n
+    ^ +++++ +++++ = n
+    ^ n[+++] ++ = s
+    ^ n[$n*] $n* - = m
+    $m $n~ +++ $s~ = c <c
+    $m ---- = c <c
+    $m $n* +++ = c <c
+    $m $n* +++ = c <c
+}
+
+/ Procedure 'B' prints out 'Buzz'
+B {
+    / m - lowercase 'm' (109). Add 13 to get 'z', subtract 12 to get 'a'. Subtract 32 to convert to uppercase.
+    / c - current character to print
+    / s - space (32)
+    / n - newline (10)
+	
+	/ Text output
+    &m &c &s &n
+    ^ +++++ +++++ = n
+    ^ n[+++] ++ = s
+    ^ n[$n*] $n* - = m
+    $m $n~ - $s~ = c <c
+    $m $n* -- = c <c
+    $m $n* +++ = c <c
+    $m $n* +++ = c <c
+}
+
+/ Procedure 'P' determines whether the given number 'n' is positive or negative (0 is considered positive)
+/ Arguments:
+/     GLOBAL n - number to check
+/ Returns:
+/     Stack[top] - 0 for negative numbers (False), 1 for positive (True)
+P {
+    / n - Number argument. Used to count to 0 or to 100 (0 - number was negative, 100 - was positive)
+    / L - Limit (100)
+    &L ^ +++++ +++++ = L  /local L = 10
+    ^ L[$L*] = L          /local L = 100
+
+    $n &n = n  /local n = global n (to not overwrite the global value)
+    ^ ?n       /if n == 0:
+        + #;   /    return 1
+    $n ?L      /if n == 100:
+        = _    /    stack.pop()
+        + #;   /    return 1
+    = _ = _    /stack.pop(); stack.pop()
+
+    (             /while True:
+        $n + = n  /    n += 1
+        ^ ?n      /    if n == 0:
+            #;    /        return 0
+        $n ?L     /    if n == 100:
+            = _   /        stack.pop()
+            + #;  /        return 1
+        = _ = _   /    stack.pop(); stack.pop()
+    )
+}
+
+/ Procedure 'D' determines whether the given number 'n' is divisible by a number 'd'
+/ Arguments:
+/     GLOBAL MUT n - number to check (mutated by procedure)
+/     GLOBAL d - divisor
+/ Returns:
+/     Stack[top] - 0 if not divisible (False), 1 if divisible (True)
+D {
+    &f              /local f = 0 (f - False)
+    (               /while True:
+        $n $d~ = n  /    n -= d
+        ^ ?n        /    if n == 0:
+            + #;    /        return 1
+        = _         /    stack.pop()
+        @P ?f       /    if not isPositive(n):
+            #;      /        return 0
+        = _         /    stack.pop()
+    )
+}
+
+
+^ + = T            /T = 1  (To check if return value is "True")
+^ + = n            /n = 1  (Current number)
+^ +++++ +++++ = r  /r = 10
+$r = t             /t = 10 (for newline character)
+^ $r* +++++ = f    /f = 15 (For isDivisible call)
+^ r[$r*] = r       /r = 100 (Loop limit)
+
+r [            /for _ in range(100):
+    $n         /    stack.append(n)
+    $f = d     /    d = 15
+    @D ?T      /    if isDivisible(n, d=15):
+        = _    /        stack.pop()
+        @F@B   /        Fizz(); Buzz()
+        + = n  /        n = stack.pop() + 1
+        <t     /        print newline
+        :;     /        continue
+    = _        /    stack.pop()
+    = n $n     /    n = stack.pop(); stack.append(n)
+    ^ +++ = d  /    d = 3
+    @D ?T      /    if isDivisible(n, d=3):
+        = _    /        stack.pop()
+        @F     /        Fizz()
+        + = n  /        n = stack.pop() + 1
+        <t     /        print newline
+        :;     /        continue
+    = _        /    stack.pop()
+    = n $n     /    n = stack.pop(); stack.append(n)
+    $d ++ = d  /    d = 5
+    @D ?T      /    if isDivisible(n, d=5):
+        = _    /        stack.pop()
+        @B     /        Buzz()
+        + = n  /        n = stack.pop() + 1
+        <t     /        print newline
+        :;     /        continue
+    = _        /    stack.pop()
+    = n @C     /    convertToChar(n)
+    $n + = n   /    n += 1
+    <t         /    print newline
+]

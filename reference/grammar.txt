@@ -1,0 +1,43 @@
+This is a list of all proper symbol combinations
+
+<name> { }
+
+<name> [ ]
+
+( )
+
+@ <name>
+
+= <name>
+= _
+
+! <name>
+
+& <name>
+
+$ <name>
+
+% <name>
+% _
+
+< <name>
+
+> <name>
+
+? <name> ;
+
+^
+
++
+
+-
+
+*
+
+~
+
+#
+
+:
+
+/

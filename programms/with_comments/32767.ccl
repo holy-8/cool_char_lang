@@ -1,0 +1,9 @@
+/ Procedure 'A' pushes 32767 to the stack.
+/ This is the upper bound of stack values and variable values.
+A {
+    &a &z
+    ^ (++?z #;$a + = a)
+    $a*
+}
+
+@A

@@ -1,0 +1,98 @@
+/ Procedure 'A' prints out 'Enter number a: '
+A {
+    / m - lowercase 'm' (109). Add 13 to get 'z', subtract 12 to get 'a'. Subtract 32 to convert to uppercase.
+    / c - current character to print
+    / s - space (32)
+    / n - newline (10)
+	
+	/ Text output
+    &m &c &s &n
+    ^ +++++ +++++ = n
+    ^ n[+++] ++ = s
+    ^ n[$n*] $n* - = m
+    $m $n~ ++ $s~ = c <c
+    $m + = c <c
+    $m $n* --- = c <c
+    $m $n~ ++ = c <c
+    $m +++++ = c <c
+    <s
+    $m + = c <c
+    $m $n* -- = c <c
+    $m = c <c
+    $m $n~ - = c <c
+    $m $n~ ++ = c <c
+    $m +++++ = c <c
+    <s
+    $m $n~ -- = c <c
+    $s $s* --- --- = c <c
+    <s
+}
+
+/ Procedure 'B' prints out 'Enter number b: '
+B {
+    / m - lowercase 'm' (109). Add 13 to get 'z', subtract 12 to get 'a'. Subtract 32 to convert to uppercase.
+    / c - current character to print
+    / s - space (32)
+    / n - newline (10)
+	
+	/ Text output
+    &m &c &s &n
+    ^ +++++ +++++ = n
+    ^ n[+++] ++ = s
+    ^ n[$n*] $n* - = m
+    $m $n~ ++ $s~ = c <c
+    $m + = c <c
+    $m $n* --- = c <c
+    $m $n~ ++ = c <c
+    $m +++++ = c <c
+    <s
+    $m + = c <c
+    $m $n* -- = c <c
+    $m = c <c
+    $m $n~ - = c <c
+    $m $n~ ++ = c <c
+    $m +++++ = c <c
+    <s
+    $m $n~ - = c <c
+    $s $s* --- --- = c <c
+    <s
+}
+
+/ ARGS:
+/     GLOBAL MUT r - max amount of characters to read from stdin
+/ RETURN:
+/     GLOBAL MUT r - input length (including newline)
+R {
+    / a - amount of characters read from stdin
+    / c - current character that was read from stdin
+    / n - newline (n)
+    &a &c &n
+    ^ +++++ +++++ = n  /n = 10
+    r [                /for _ in range(r):
+        >c $c          /    c = ord(getch()); push(c)
+        $a + = a       /    a += 1
+        ?n             /    if c == 10:
+            #;         /        break
+    ]
+    (                  /while True:
+        ?n             /    if c == 10:
+            #;         /        break
+        $n             /    push(n)
+        $a + = a       /    a += 1
+        <n             /    print chr(n)
+        #              /    break
+    )
+    $a = r             /r = a
+}
+
+^ ++ = r
+@A @R
+= _
+$r - = r
+%r
+
+^ ++ = r
+@B @R
+= _
+$r - = r
+%r

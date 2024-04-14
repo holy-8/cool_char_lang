@@ -1,0 +1,23 @@
+/ Arguments:
+/     Stack[top] - which number of the fibonacci sequence to calculate (1st, 2nd, ...)
+/ Returns:
+/     Stack[top] - Nth number of a fibonacci sequence.
+F {
+    &c &a &b
+    ?c #; $c+ = c
+    ?c #;
+    = c $c $c
+    - @F = a
+    -- @F = b
+    $a $b*
+}
+
+^+++++ +++++ = t
+$t $t* + = t
+^ - = x
+
+t [
+    $x + = x
+    $x @F
+]
+

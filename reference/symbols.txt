@@ -1,0 +1,63 @@
+=============================================================================
+| Symbol |                             Meaning                              |
+|========|==================================================================|
+|   {    | Start of PROCEDURE block                                         | 1 DefineProcedure
+|========|==================================================================|
+|   }    | End of PROCEDURE block; returns to caller                        | 2 EndProcedure
+|========|==================================================================|
+|   @    | Calls PROCEDURE with the following name                          | 3 CallProcedure
+|========|==================================================================|
+|   ^    | Pushes new element with value 0 onto the stack                   | 4 PushZero
+|========|==================================================================|
+|   =    | Pops top element; assigns its value to the following varible     | 5 Assign
+|========|==================================================================|
+|   !    | Deletes the following variable; won't delete defined procedures  | 6 Delete
+|========|==================================================================|
+|   _    | Does nothing; can be used instead of name where allowed          |
+|========|==================================================================|
+|   &    | Creates local variable; can only be used in a PROCEDURE block    | 7 CreateLocal
+|========|==================================================================|
+|   $    | Takes the following variable value and pushes it onto stack      | 8 PushVariable
+|========|==================================================================|
+|   +    | Adds 1 to the top element                                        | 9 Add
+|========|==================================================================|
+|   -    | Subtracts 1 from the top element                                 | 10 Subtract
+|========|==================================================================|
+|   *    | Pops top element; adds its value to the next element             | 11 PopAdd
+|========|==================================================================|
+|   ~    | Pops top element; subtracts its value from the next element      | 12 PopSubtract
+|========|==================================================================|
+|   %    | Reverses the following variable value top elements of a stack    | 13 Reverse
+|        | Reverses the entire stack if next symbol is _                    |
+|========|==================================================================|
+|   <    | Outputs ASCII char; takes code from the following variable       | 14 StdOut
+|========|==================================================================|
+|   >    | One ASCII char input; stores its code in following variable      | 15 StdIn
+|========|==================================================================|
+|   ?    | Checks if top element equals the following variable value        | 16 Compare
+|        | If condition is FALSE, jumps to the end of IF block ';'          |
+|========|==================================================================|
+|   ;    | End of IF block                                                  | 17 EndCompare
+|========|==================================================================|
+|   [    | Start of REPEAT block                                            | 18 StartRepeat
+|========|==================================================================|
+|   ]    | End of REPEAT block; goes back to start '[' if not exhausted     | 19 EndRepeat
+|========|==================================================================|
+|   (    | Start of WHILE block                                             | 20 StartWhile
+|========|==================================================================|
+|   )    | End of WHILE block; goes back to start of a WHILE block '('      | 21 EndWhile
+|========|==================================================================|
+|   #    | Exits any block; returns to caller inside a PROCEDURE block      | 22 ExitBlock
+|========|==================================================================|
+|        | Goes back to start of a block; can be only used in [] () blocks  |
+|   :    | Inside of REPEAT block [] subtracts 1 from repeat counter        | 23 ContinueBlock
+|        | Exits the REPEAT block if counter reached 0                      |
+|========|==================================================================|
+|   /    | Comment; everything after / on same line is ignored              |
+|========|==================================================================|
+| [A-Z]  | Single character within this range is used for name binding      |
+| [a-z]  | Name is binded to: procedure (A{}), globals (=A), locals (&A)    |
+|========|==================================================================|
+| Space  |                                                                  |
+| \n     | Completely ignored                                               |
+=============================================================================

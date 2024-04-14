@@ -1,0 +1,314 @@
+/ This is a '99 Bottles of Beer' program.
+/ It generates the lyrics of '99 Bottles of Beer' song as an output.
+
+N { &m &c &s &n       
+    ^ +++++ +++++ = n 
+    ^ n[+++] ++ = s   
+    ^ n[$n*] $n* - = m
+    $m + $s~ = c <c   
+    $m ++ = c <c      
+    <s
+    $m = c <c
+    $m ++ = c <c      
+    $m +++++ = c <c   
+    $m $n~ ++ = c <c  
+    <s
+    $m $n~ - = c <c
+    $m ++ = c <c
+    $m $n* --- = c <c
+    $m $n* --- = c <c
+    $m - = c <c
+    $m $n~ ++ = c <c
+    $m +++ +++ = c <c
+    <s
+    $m ++ = c <c
+    $m $n~ +++ = c <c
+    <s
+    $m $n~ - = c <c
+    $m $n~ ++ = c <c
+    $m $n~ ++ = c <c
+    $m +++++ = c <c
+    <s
+    $m ++ = c <c
+    $m + = c <c
+    <s
+    $m $n* --- = c <c
+    $m ----- = c <c
+    $m $n~ ++ = c <c
+    <s
+    $m $n* = c <c
+    $m $n~ -- = c <c
+    $m - = c <c
+    $m - = c <c
+    $s $n* ++ = c <c
+    <s
+    $m + = c <c
+    $m ++ = c <c
+    <s
+    $m = c <c
+    $m ++ = c <c
+    $m +++++ = c <c
+    $m $n~ ++ = c <c
+    <s
+    $m $n~ - = c <c
+    $m ++ = c <c
+    $m $n* --- = c <c
+    $m $n* --- = c <c
+    $m - = c <c
+    $m $n~ ++ = c <c
+    $m +++ +++ = c <c
+    <s
+    $m ++ = c <c
+    $m $n~ +++ = c <c
+    <s
+    $m $n~ - = c <c
+    $m $n~ ++ = c <c
+    $m $n~ ++ = c <c
+    $m +++++ = c <c
+    $s $n* ++++ = c <c
+    <n
+    $m --- --- $s~ = c <c
+    $m ++ = c <c
+    <s
+    $m $n* --- = c <c
+    $m ++ = c <c
+    <s
+    $m $n* --- = c <c
+    $m ----- = c <c
+    $m $n~ ++ = c <c
+    <s
+    $m +++ +++ = c <c
+    $m $n* --- = c <c
+    $m ++ = c <c
+    $m +++++ = c <c
+    $m $n~ ++ = c <c
+    <s
+    $m $n~ -- = c <c
+    $m + = c <c
+    $m $n~ + = c <c
+    <s
+    $m $n~ - = c <c
+    $m $n* -- = c <c
+    $m $n* ++ = c <c
+    <s
+    $m +++ +++ = c <c
+    $m ++ = c <c
+    $m = c <c
+    $m $n~ ++ = c <c
+    <s
+    $m = c <c
+    $m ++ = c <c
+    $m +++++ = c <c
+    $m $n~ ++ = c <c
+    $s $n* ++ = c <c
+    <s
+    $s $s* $n~ +++ = c <c
+    $s $s* $n~ +++ = c <c
+    <s
+    $m $n~ - = c <c
+    $m ++ = c <c
+    $m $n* --- = c <c
+    $m $n* --- = c <c
+    $m - = c <c
+    $m $n~ ++ = c <c
+    $m +++ +++ = c <c
+    <s
+    $m ++ = c <c
+    $m $n~ +++ = c <c
+    <s
+    $m $n~ - = c <c
+    $m $n~ ++ = c <c
+    $m $n~ ++ = c <c
+    $m +++++ = c <c
+    <s
+    $m ++ = c <c
+    $m + = c <c
+    <s
+    $m $n* --- = c <c
+    $m ----- = c <c
+    $m $n~ ++ = c <c
+    <s
+    $m $n* = c <c
+    $m $n~ -- = c <c
+    $m - = c <c
+    $m - = c <c
+    $s $n* ++++ = c <c
+    <n }
+
+C { $b &n = n  &t &d
+    &z &x ^ +++++ = x
+    ^ x[$x* $x*] -- = z
+    $x $x* = x
+
+    ^ ?n
+        <z
+        #;
+    = _
+    (
+        $n - = n
+        $d + = d
+        $x ?d
+            $t + = t
+            ^ = d;
+        = _
+        ^ ?n
+            ?t
+                $d $z* = d
+                <d
+                = _
+                #;
+            $t $z* = t
+            <t
+            $d $z* = d
+            <d
+            = _
+            #;
+        = _
+    ) }
+
+B { &m &c &s &n
+    ^ +++++ +++++ = n
+    ^ n[+++] ++ = s
+    ^ n[$n*] $n* - = m
+    @C
+    <s
+    $m $n~ - = c <c
+    $m ++ = c <c
+    $m $n* --- = c <c
+    $m $n* --- = c <c
+    $m - = c <c
+    $m $n~ ++ = c <c
+    $m +++ +++ = c <c
+    <s
+    $m ++ = c <c
+    $m $n~ +++ = c <c
+    <s
+    $m $n~ - = c <c
+    $m $n~ ++ = c <c
+    $m $n~ ++ = c <c
+    $m +++++ = c <c
+    <s
+    $m ++ = c <c
+    $m + = c <c
+    <s
+    $m $n* --- = c <c
+    $m ----- = c <c
+    $m $n~ ++ = c <c
+    <s
+    $m $n* = c <c
+    $m $n~ -- = c <c
+    $m - = c <c
+    $m - = c <c
+    $s $n* ++ = c <c
+    <s
+    @C
+    <s
+    $m $n~ - = c <c
+    $m ++ = c <c
+    $m $n* --- = c <c
+    $m $n* --- = c <c
+    $m - = c <c
+    $m $n~ ++ = c <c
+    $m +++ +++ = c <c
+    <s
+    $m ++ = c <c
+    $m $n~ +++ = c <c
+    <s
+    $m $n~ - = c <c
+    $m $n~ ++ = c <c
+    $m $n~ ++ = c <c
+    $m +++++ = c <c
+    $s $n* ++++ = c <c
+    <n
+    $m $n* --- $s~ = c <c
+    $m $n~ -- = c <c
+    $m -- = c <c
+    $m $n~ ++ = c <c
+    <s
+    $m ++ = c <c
+    $m + = c <c
+    $m $n~ ++ = c <c
+    <s
+    $m $n~ + = c <c
+    $m ++ = c <c
+    $m $n* = c <c
+    $m + = c <c
+    <s
+    $m $n~ -- = c <c
+    $m + = c <c
+    $m $n~ + = c <c
+    <s
+    $m +++ = c <c
+    $m $n~ -- = c <c
+    $m +++ +++ = c <c
+    $m +++ +++ = c <c
+    <s
+    $m ---- = c <c
+    $m $n* --- = c <c
+    <s
+    $m $n~ -- = c <c
+    $m +++++ = c <c
+    $m ++ = c <c
+    $m $n* -- = c <c
+    $m + = c <c
+    $m $n~ + = c <c
+    $s $n* ++ = c <c
+    <s
+    (
+        $b - = b
+        ^ ?b
+            $m + = c <c
+            $m ++ = c <c
+            <s
+            $m = c <c
+            $m ++ = c <c
+            $m +++++ = c <c
+            $m $n~ ++ = c <c
+            #;
+        @C
+    )
+    = _
+    $b + = b
+    <s
+    $m $n~ - = c <c
+    $m ++ = c <c
+    $m $n* --- = c <c
+    $m $n* --- = c <c
+    $m - = c <c
+    $m $n~ ++ = c <c
+    $m +++ +++ = c <c
+    <s
+    $m ++ = c <c
+    $m $n~ +++ = c <c
+    <s
+    $m $n~ - = c <c
+    $m $n~ ++ = c <c
+    $m $n~ ++ = c <c
+    $m +++++ = c <c
+    <s
+    $m ++ = c <c
+    $m + = c <c
+    <s
+    $m $n* --- = c <c
+    $m ----- = c <c
+    $m $n~ ++ = c <c
+    <s
+    $m $n* = c <c
+    $m $n~ -- = c <c
+    $m - = c <c
+    $m - = c <c
+    $s $n* ++++ = c <c
+    <n
+    <n }
+
+^ +++++ = b
+$b $b* = b
+^ b[$b*] - = b
+(
+    ^ ?b
+        #;
+    = _
+    @B
+    $b - = b
+)
+@N

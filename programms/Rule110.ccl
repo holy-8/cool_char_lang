@@ -1,0 +1,22 @@
+/ Procedure 'S' calculates a new state of a cell
+/ Arguments:
+/     GLOBAL l - lower cell on the stack (left)
+/     GLOBAL m - mid cell on the stack (mid)
+/     GLOBAL r - top cell on the stack (right)
+S {
+    ^ ?l ?m ?r       #;;; =_  /0 0 0 -> 0
+    ^ ?l ?m + ?r     #;;; =_  /0 0 1 -> 1
+    ^ ?l + ?m - ?r + #;;; =_  /0 1 0 -> 1
+    ^ ?l + ?m ?r     #;;; =_  /0 1 1 -> 1
+    ^ + ?l - ?m ?r   #;;; =_  /1 0 0 -> 0
+    ^ + ?l - ?m + ?r #;;; =_  /1 0 1 -> 1
+    ^ + ?l ?m - ?r + #;;; =_  /1 1 0 -> 1
+    ^ #                       /1 1 1 -> 0
+}
+
+
+^ +++++ = C ^ C[++++++] = C  /C = 30 (boardCap)
+
+C [
+
+]

@@ -1,0 +1,39 @@
+/ ARGS:
+/     GLOBAL MUT r - max amount of characters to read from stdin
+/ RETURN:
+/     GLOBAL MUT r - input length (including newline)
+R {
+    / a - amount of characters read from stdin
+    / c - current character that was read from stdin
+    / n - newline (n)
+    &a &c &n
+    ^ +++++ +++++ = n  /n = 10
+    r [                /for _ in range(r):
+        >c $c          /    c = ord(getch()); push(c)
+        $a + = a       /    a += 1
+        ?n             /    if c == 10:
+            #;         /        break
+    ]
+    (                  /while True:
+        ?n             /    if c == 10:
+            #;         /        break
+        $n             /    push(n)
+        $a + = a       /    a += 1
+        <n             /    print chr(n)
+        #              /    break
+    )
+    $a = r             /r = a
+}
+
+^ ++++ = r
+^ r[$r* $r*] = r  /r = 32
+
+@R                /r = R(r)
+= _               /pop()
+$r - = r          /r -= 1
+%r                /reverse(r)
+
+r [               /for _ in range(r):
+    = c           /    c = pop()
+    <c            /    print chr(c)
+]

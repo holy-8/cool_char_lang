@@ -1,0 +1,36 @@
+/ This is a 'cat' program.
+/ It reads 32 chars from the standard input (until Enter key is pressed) and outputs them back.
+
+R {
+    &a &c &n
+    ^ +++++ +++++ = n
+    r [
+        >c $c
+        $a + = a
+        ?n
+            #;
+    ]
+
+    (
+        ?n
+            #;
+        $n
+        $a + = a
+        <n
+        #
+    )
+    $a = r
+}
+
+^ ++++ = r
+^ r[$r* $r*] = r
+
+@R
+= _
+$r - = r
+%r
+
+r [
+    = c
+    <c
+]

@@ -1,0 +1,343 @@
+/ Procedure 'N' prints out text after 0 bottles are left
+N {
+    / m - lowercase 'm' (109). Add 13 to get 'z', subtract 12 to get 'a'. Subtract 32 to convert to uppercase.
+    / c - current character to print
+    / s - space (32)
+    / n - newline (10)
+	
+	/ Text output
+    &m &c &s &n       
+    ^ +++++ +++++ = n 
+    ^ n[+++] ++ = s   
+    ^ n[$n*] $n* - = m
+    $m + $s~ = c <c   
+    $m ++ = c <c      
+    <s
+    $m = c <c
+    $m ++ = c <c      
+    $m +++++ = c <c   
+    $m $n~ ++ = c <c  
+    <s
+    $m $n~ - = c <c
+    $m ++ = c <c
+    $m $n* --- = c <c
+    $m $n* --- = c <c
+    $m - = c <c
+    $m $n~ ++ = c <c
+    $m +++ +++ = c <c
+    <s
+    $m ++ = c <c
+    $m $n~ +++ = c <c
+    <s
+    $m $n~ - = c <c
+    $m $n~ ++ = c <c
+    $m $n~ ++ = c <c
+    $m +++++ = c <c
+    <s
+    $m ++ = c <c
+    $m + = c <c
+    <s
+    $m $n* --- = c <c
+    $m ----- = c <c
+    $m $n~ ++ = c <c
+    <s
+    $m $n* = c <c
+    $m $n~ -- = c <c
+    $m - = c <c
+    $m - = c <c
+    $s $n* ++ = c <c
+    <s
+    $m + = c <c
+    $m ++ = c <c
+    <s
+    $m = c <c
+    $m ++ = c <c
+    $m +++++ = c <c
+    $m $n~ ++ = c <c
+    <s
+    $m $n~ - = c <c
+    $m ++ = c <c
+    $m $n* --- = c <c
+    $m $n* --- = c <c
+    $m - = c <c
+    $m $n~ ++ = c <c
+    $m +++ +++ = c <c
+    <s
+    $m ++ = c <c
+    $m $n~ +++ = c <c
+    <s
+    $m $n~ - = c <c
+    $m $n~ ++ = c <c
+    $m $n~ ++ = c <c
+    $m +++++ = c <c
+    $s $n* ++++ = c <c
+    <n
+    $m --- --- $s~ = c <c
+    $m ++ = c <c
+    <s
+    $m $n* --- = c <c
+    $m ++ = c <c
+    <s
+    $m $n* --- = c <c
+    $m ----- = c <c
+    $m $n~ ++ = c <c
+    <s
+    $m +++ +++ = c <c
+    $m $n* --- = c <c
+    $m ++ = c <c
+    $m +++++ = c <c
+    $m $n~ ++ = c <c
+    <s
+    $m $n~ -- = c <c
+    $m + = c <c
+    $m $n~ + = c <c
+    <s
+    $m $n~ - = c <c
+    $m $n* -- = c <c
+    $m $n* ++ = c <c
+    <s
+    $m +++ +++ = c <c
+    $m ++ = c <c
+    $m = c <c
+    $m $n~ ++ = c <c
+    <s
+    $m = c <c
+    $m ++ = c <c
+    $m +++++ = c <c
+    $m $n~ ++ = c <c
+    $s $n* ++ = c <c
+    <s
+    $s $s* $n~ +++ = c <c
+    $s $s* $n~ +++ = c <c
+    <s
+    $m $n~ - = c <c
+    $m ++ = c <c
+    $m $n* --- = c <c
+    $m $n* --- = c <c
+    $m - = c <c
+    $m $n~ ++ = c <c
+    $m +++ +++ = c <c
+    <s
+    $m ++ = c <c
+    $m $n~ +++ = c <c
+    <s
+    $m $n~ - = c <c
+    $m $n~ ++ = c <c
+    $m $n~ ++ = c <c
+    $m +++++ = c <c
+    <s
+    $m ++ = c <c
+    $m + = c <c
+    <s
+    $m $n* --- = c <c
+    $m ----- = c <c
+    $m $n~ ++ = c <c
+    <s
+    $m $n* = c <c
+    $m $n~ -- = c <c
+    $m - = c <c
+    $m - = c <c
+    $s $n* ++++ = c <c
+    <n
+}
+
+/ Procedure 'C' prints out 2 or 1 digit POSITIVE number
+/ Arguments: GLOBAL b: number to print
+C {
+    / n - Number argument. Used as a counter.
+    / d - Used for temporary counting to 10. When equals 10, 1 is added to t, and d is set to 0.
+    / d is printed as a first digit (before tens).
+    / t - Tens (1, 2, 3...). If not 0, printed as a second digit (in front of d)
+    / x - 10
+    / z - Character '0' (48)
+    $b &n = n  &t &d
+    &z &x ^ +++++ = x
+    ^ x[$x* $x*] -- = z  /z = 48
+    $x $x* = x           /x = 10
+
+    ^ ?n    /if n == 0:
+        <z  /    print chr(z)
+        #;  /    return
+    = _     /pop()
+    (                       /while True:
+        $n - = n            /    n -= 1
+        $d + = d            /    d += 1
+        $x ?d               /    if d == 10:
+            $t + = t        /        t += 1
+            ^ = d;          /        d = 0
+        = _                 /    pop()
+        ^ ?n                /    if n == 0:
+            ?t              /        if t == 0:
+                $d $z* = d  /            d += 48
+                <d          /            print chr(d)
+                = _         /            pop()
+                #;          /            break
+            $t $z* = t      /        t += 48
+            <t              /        print chr(t)
+            $d $z* = d      /        d += 48
+            <d              /        print chr(d)
+            = _             /        pop()
+            #;              /        break
+        = _                 /    pop()
+    )
+}
+
+/ Procedure 'B' prints out how many bottles are left.
+/ Arguments: GLOBAL MUT b: amount of bottles left (mutated by procedure)
+B {
+    / m - lowercase 'm' (109). Add 13 to get 'z', subtract 12 to get 'a'. Subtract 32 to convert to uppercase.
+    / c - current character to print
+    / s - space (32)
+    / n - newline (10)
+
+	/ Text output ({b} bottles of beer...)
+    &m &c &s &n
+    ^ +++++ +++++ = n
+    ^ n[+++] ++ = s
+    ^ n[$n*] $n* - = m
+    @C  / Prints current amount of bottles
+    <s
+    $m $n~ - = c <c
+    $m ++ = c <c
+    $m $n* --- = c <c
+    $m $n* --- = c <c
+    $m - = c <c
+    $m $n~ ++ = c <c
+    $m +++ +++ = c <c
+    <s
+    $m ++ = c <c
+    $m $n~ +++ = c <c
+    <s
+    $m $n~ - = c <c
+    $m $n~ ++ = c <c
+    $m $n~ ++ = c <c
+    $m +++++ = c <c
+    <s
+    $m ++ = c <c
+    $m + = c <c
+    <s
+    $m $n* --- = c <c
+    $m ----- = c <c
+    $m $n~ ++ = c <c
+    <s
+    $m $n* = c <c
+    $m $n~ -- = c <c
+    $m - = c <c
+    $m - = c <c
+    $s $n* ++ = c <c
+    <s
+    @C  / Prints current amount of bottles
+    <s
+    $m $n~ - = c <c
+    $m ++ = c <c
+    $m $n* --- = c <c
+    $m $n* --- = c <c
+    $m - = c <c
+    $m $n~ ++ = c <c
+    $m +++ +++ = c <c
+    <s
+    $m ++ = c <c
+    $m $n~ +++ = c <c
+    <s
+    $m $n~ - = c <c
+    $m $n~ ++ = c <c
+    $m $n~ ++ = c <c
+    $m +++++ = c <c
+    $s $n* ++++ = c <c
+    <n
+
+    / Text output (Take one down and pass it around, {b-1}...)
+    $m $n* --- $s~ = c <c
+    $m $n~ -- = c <c
+    $m -- = c <c
+    $m $n~ ++ = c <c
+    <s
+    $m ++ = c <c
+    $m + = c <c
+    $m $n~ ++ = c <c
+    <s
+    $m $n~ + = c <c
+    $m ++ = c <c
+    $m $n* = c <c
+    $m + = c <c
+    <s
+    $m $n~ -- = c <c
+    $m + = c <c
+    $m $n~ + = c <c
+    <s
+    $m +++ = c <c
+    $m $n~ -- = c <c
+    $m +++ +++ = c <c
+    $m +++ +++ = c <c
+    <s
+    $m ---- = c <c
+    $m $n* --- = c <c
+    <s
+    $m $n~ -- = c <c
+    $m +++++ = c <c
+    $m ++ = c <c
+    $m $n* -- = c <c
+    $m + = c <c
+    $m $n~ + = c <c
+    $s $n* ++ = c <c
+    <s
+    (                         /while True:
+        $b - = b              /    b -= 1 (mutating the global b)
+        ^ ?b                  /    if b == 0:
+            $m + = c <c       /        print 'n'
+            $m ++ = c <c      /        print 'o'
+            <s                /        print ' '
+            $m = c <c         /        print 'm'
+            $m ++ = c <c      /        print 'o'
+            $m +++++ = c <c   /        print 'r'
+            $m $n~ ++ = c <c  /        print 'e'
+            #;                /        break
+        @C                    /    C(b)
+        #                     /    break
+    )
+    = _                       /pop()
+    $b + = b                  /b += 1 (changing global b back to its original value)
+    <s
+    $m $n~ - = c <c
+    $m ++ = c <c
+    $m $n* --- = c <c
+    $m $n* --- = c <c
+    $m - = c <c
+    $m $n~ ++ = c <c
+    $m +++ +++ = c <c
+    <s
+    $m ++ = c <c
+    $m $n~ +++ = c <c
+    <s
+    $m $n~ - = c <c
+    $m $n~ ++ = c <c
+    $m $n~ ++ = c <c
+    $m +++++ = c <c
+    <s
+    $m ++ = c <c
+    $m + = c <c
+    <s
+    $m $n* --- = c <c
+    $m ----- = c <c
+    $m $n~ ++ = c <c
+    <s
+    $m $n* = c <c
+    $m $n~ -- = c <c
+    $m - = c <c
+    $m - = c <c
+    $s $n* ++++ = c <c
+    <n
+    <n
+}
+
+^ +++++ = b
+$b $b* = b
+^ b[$b*] - = b  /b = 99
+(               /while True:
+    ^ ?b        /    if b == 0:
+        #;      /       break
+    = _         /    pop()
+    @B          /    B(b)
+    $b - = b    /    b -= 1
+)
+@N              /N()

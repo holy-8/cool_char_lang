@@ -1,0 +1,18 @@
+/ Procedure 'S' calculates a sum of all integers from 'n' to 0
+/ ARGUMENTS:
+/     GLOBAL MUT n - highest number in a sequence, e.g. if n == 3, then sequence is [3, 2, 1, 0]
+/ RETURNS:
+/     GLOBAL MUT r - sum of the sequence
+S {
+    ^ ?n        /if n == 0:
+        = _     /    pop()
+        #;      /    return
+    = _         /pop()
+    $r $n* = r  /r += n
+    $n - = n    /n -= 1
+    @S          /S()
+}
+
+^ = r        /r = 0
+^ +++++ = n  /n = 5
+@S           /S()

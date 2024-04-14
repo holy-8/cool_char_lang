@@ -1,0 +1,23 @@
+^ +++++ = f   /f = 5
+$f $f* = t    /t = 10
+
+^ t[$f*] --   /stack[-1] = 48
+= f           /f = stack.pop()
+$f            /stack.append(f)
+$f +++++ = f  /f = 53 (char '5')
+$f + = s      /s = 54 (char '6')
+$s ++++ = l   /l = 58 (next char after '9')
+
+(           /while True:
+    ?l      /    if stack[-1] == 58:
+        #;  /        break
+    ?f      /    if stack[-1] == 53:
+        +   /        stack[-1] += 1
+        :;  /        continue
+    ?s      /    if stack[-1] == 54:
+        +   /        stack[-1] += 1
+        :;  /        continue
+    = t <t  /    t = stack.pop(); print chr(t)
+    $t      /    stack.append(t)
+    +       /    stack[-1] += 1
+)
