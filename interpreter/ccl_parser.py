@@ -27,6 +27,7 @@ class ContextProcedure(ParseContext):
     """IMPORTANT: start_address and end_address are positions in the source code"""
     start_address: tuple[int, int]
     end_address: tuple[int, int]
+    end_traceback: CCLTraceback = None
     symbol: str = '{'
     symbol_end: str = '}'
 
@@ -215,6 +216,7 @@ class Parser:
                 if not isinstance(self.parse_context[-1], ContextProcedure):
                     raise CCLParseError(f"Unexpected '}}': expected '{self.parse_context[-1].symbol_end}' after '{self.parse_context[-1].symbol}'", traceback=inner_traceback)
                 result_context = self.parse_context.pop()
+                result_context.end_traceback = inner_traceback
                 result_context.end_address = inner_traceback.position
             elif symbol == '[':
                 self.instruction_uid += 1
@@ -267,6 +269,7 @@ class Parser:
         from_line = traceback.position[0]
         from_symbol = traceback.position[1] + 1
         self.lookahead_symbol(-1, ContextProcedure, traceback)
+        end_traceback = self.parse_context[-1].end_traceback
         end_position = self.parse_context[-1].end_address
 
         instruction_stack = list()
@@ -321,7 +324,7 @@ class Parser:
 
             self.prev_symbol = symbol
 
-        instruction = DefineProcedure(namespace=namespace, traceback=traceback, name_parameter=name, instruction_stack=instruction_stack)
+        instruction = DefineProcedure(namespace=namespace, traceback=traceback, end_traceback=end_traceback, name_parameter=name, instruction_stack=instruction_stack)
         self.prev_symbol = '}'
         self.skip_to_position.append(end_position)
         return instruction

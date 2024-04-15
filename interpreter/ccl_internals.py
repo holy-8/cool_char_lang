@@ -262,6 +262,7 @@ class Instruction(ABC):
 class DefineProcedure(Instruction):
     name_parameter: str
     instruction_stack: list[Instruction]
+    end_traceback: CCLTraceback
 
     def callback(self):
         procedure = Procedure(name=self.name_parameter, global_namespace=self.namespace)
@@ -271,7 +272,7 @@ class DefineProcedure(Instruction):
             procedure.instruction_stack.append(instruction)
 
         procedure.instruction_stack.append(
-            EndProcedure(namespace=procedure, traceback=self.traceback)
+            EndProcedure(namespace=procedure, traceback=self.end_traceback)
         )
 
         self.namespace.defined_procedures[self.name_parameter] = procedure
