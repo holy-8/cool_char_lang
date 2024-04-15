@@ -1,6 +1,6 @@
 .idea/
 .vs/
 .vscode/
-bat/paths
+bat/
 python/
 interpreter/__pycache__/

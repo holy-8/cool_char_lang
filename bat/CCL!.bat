@@ -1,2 +1,2 @@
 @echo off
-python "<your_path>/cool_char_lang/interpreter/main.py" %*
+python "D:/Files/PyCharm_Projects/cool_char_lang/interpreter/main.py" %*
