@@ -9,8 +9,8 @@ python /cool_char_lang/interpreter/main.py <filepath> [-args...]
 ```
 
 If you're not too lazy, you can do the following:
-1. `Add <your_path>/cool_char_lang/bat` to PATH environment variable.
-2. Change `<your_path>` in the *.bat* script to the full path to *cool_char_lang* folder.
+1. Add `<your_path>/cool_char_lang/bat` to PATH environment variable.
+2. Change `<your_path>` in the `.bat` (and in PATH variable) script to the **full path** to `cool_char_lang` folder.
 
 You will be able to run the code like this:
 ```
