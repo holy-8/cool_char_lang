@@ -14,9 +14,76 @@ S {
     ^ #                       /1 1 1 -> 0
 }
 
+/ Procedure 'G' calculates the next generation.
+G {
+    / local S: -1 (To stop reading from stack)
+    / local O: temporary variable storing the 'S' procedure output
+    &S ^- = S
+    &O
 
-^ +++++ = C ^ C[++++++] = C  /C = 30 (boardCap)
+    ?S  #; = r
+    ?S %_ $r %_ #; = m
+    ?S %_ $m $r %_ #; = l
 
-C [
+    @S = O
+    %_ $O %_
+    $l $m
+}
 
-]
+/ Procedure 'R' reverses the board before the next generation.
+R {
+    &S ^ - = S  /S = -1 (StopIteration)
+    &c  /current cell
+    (
+        ?S #;
+        = c
+        %_ $c %_
+    )
+    %_
+}
+
+/ Procedure 'P' prints out the current board state
+P {
+    &S ^ - = S  /S = -1 (StopIteration)
+    &n ^ +++++ +++++ = n  /n = 10 (newline)
+    &s ^ n[+++] ++ = s  /s = 32 (space ' ')
+    &a $s $n* = a  /a = 42 (asterisk '*')
+    &c  /current cell
+    %_ ^- %_
+    (
+        ?S #;
+        = c
+        ^ ?c <s;
+        + ?c <a;
+        = _
+        %_ $c %_
+    )
+    %_
+    (
+        ?S #;
+        = c %_ $c %_
+    )
+    = _ %_
+    <n
+}
+
+/ Main procedure
+M {
+    &r
+    &S ^ - = S  /S = -1 (StopIteration)
+    ^ +++++ +++++ = C ^ C[$C*] = C  /C = 100 (boardCap)
+    ^- ^ ^ + C[^] = _ = _  /Initializes board
+    C [
+        (
+            ^ ?r =_ $r + = r @P #;
+            = r @R @P @R #
+        )
+        (
+            @G
+            ?S #;
+        )
+        @R
+    ]
+}
+
+@M
