@@ -73,6 +73,7 @@ M {
     &S ^ - = S  /S = -1 (StopIteration)
     ^ +++++ +++++ = C ^ C[$C*] = C  /C = 100 (boardCap)
     ^- ^ ^ + C[^] = _ = _  /Initializes board
+    $C $C* = C  /Amount of generations: boardsize * 2
     C [
         (
             ^ ?r =_ $r + = r @P #;
