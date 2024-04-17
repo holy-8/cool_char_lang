@@ -1,7 +1,8 @@
 / This is a '99 Bottles of Beer' program.
 / It generates the lyrics of '99 Bottles of Beer' song as an output.
 
-N { &m &c &s &n       
+N {
+    &m &c &s &n       
     ^ +++++ +++++ = n 
     ^ n[+++] ++ = s   
     ^ n[$n*] $n* - = m
@@ -133,9 +134,11 @@ N { &m &c &s &n
     $m - = c <c
     $m - = c <c
     $s $n* ++++ = c <c
-    <n }
+    <n
+}
 
-C { $b &n = n  &t &d
+C {
+    $b &n = n  &t &d
     &z &x ^ +++++ = x
     ^ x[$x* $x*] -- = z
     $x $x* = x
@@ -164,9 +167,11 @@ C { $b &n = n  &t &d
             = _
             #;
         = _
-    ) }
+    )
+}
 
-B { &m &c &s &n
+B {
+    &m &c &s &n
     ^ +++++ +++++ = n
     ^ n[+++] ++ = s
     ^ n[$n*] $n* - = m
@@ -299,7 +304,8 @@ B { &m &c &s &n
     $m - = c <c
     $s $n* ++++ = c <c
     <n
-    <n }
+    <n
+}
 
 ^ +++++ = b
 $b $b* = b

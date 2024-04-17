@@ -58,6 +58,7 @@ B {
     <s
 }
 
+/ Procedure 'R' reads r characters from stdin and pushes characters onto stack
 / ARGS:
 /     GLOBAL MUT r - max amount of characters to read from stdin
 / RETURN:
@@ -85,14 +86,22 @@ R {
     $a = r             /r = a
 }
 
+/ Procedure 'C' converts 
+
 ^ ++ = r
 @A @R
-= _
-$r - = r
+= _ $r - = r
+(
+    ^+ ?r - ^++ = r %r #;
+    = _ #
+)
 %r
 
 ^ ++ = r
 @B @R
-= _
-$r - = r
+= _ $r - = r
+(
+    ^+ ?r - ^++ = r %r #;
+    = _ #
+)
 %r

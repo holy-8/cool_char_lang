@@ -1,0 +1,28 @@
+/ isPositive procedure
+/ Arguments:
+/     Stack[top] - number to check
+/ Returns:
+/     Stack[top] - 0 for negative number, 1 for positive (0 is considered positive).
+P {
+    &V = V $V              /local V - original value that was on top of a stack.
+    &Z                     /local Z = 0 (ZERO const)
+    &T ^ ++ = T            /local T = 2 (TWO const)
+    &M ^ (++?Z=_#; $M+=M)  /local M = 32767 (MAX const)
+
+    ?Z ^+ #;               /if Stack[top] == 0: return 1
+    ?M ^+ #;               /if Stack[top] == 32767: return 1
+
+    (             /while True:
+        +         /    Stack[top] += 1
+        ?Z ^ #;   /    if Stack[top] == 0: push(0); break
+        ?M ^+ #;  /    if Stack[top] == 32767: push(1); break
+    )
+    %T      /reverse(2)
+    = _ $V  /pop(); push(V)
+    %T      /reverse(2)
+}
+
+^----
+@P
+^++++
+@P
