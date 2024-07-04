@@ -76,7 +76,7 @@ Result:
 [ 0 ]
 ```
 
-## Add: `+`
+## Increment: `+`
 Takes no parameters.
 Adds 1 **to the top cell on a stack**.
 
@@ -93,7 +93,7 @@ Result:
 [ 3 ] <- top
 ```
 
-## Subtract: `-`
+## Decrement: `-`
 Takes no parameters.
 Subtracts 1 **from the top cell on a stack**.
 
@@ -110,7 +110,7 @@ Result:
 [ -4 ] <- top
 ```
 
-## Sum: `*`
+## Add: `*`
 Takes no parameters.
 This instruction does two things at once:
 1. Pops (deletes) top cell of a stack;
@@ -132,7 +132,7 @@ Result:
 [ 5 ] <- top
 ```
 
-## Difference: `~`
+## Subtract: `~`
 Takes no parameters.
 This instruction does two things at once:
 1. Pops (deletes) top cell of a stack;
@@ -194,6 +194,8 @@ If parameter is a variable name, creates (or overrides) variable with a provided
 Sets the value to the popped cell's value.
 
 If parameter is `_`, does not create any variable, simply popping the top cell.
+
+If stack is currently empty, will result in an error.
 
 ### Usage example
 Code:
@@ -362,6 +364,9 @@ Takes a parameter (on the left). Parameter is a procedure name, `_` is not allow
 
 Upon reaching `{`, defines a procedure with a provided name.
 if such procedure already exists, overrides it.
+
+Note that it is possible to define a procedure inside of a procedure.
+It's also possible for procedure to redefine itself.
 
 Code inside of procedure body (between `P{` and `}`) does not run, until the procedure is called.
 
