@@ -21,4 +21,4 @@ CCL! <filepath> [-args...]
 For the explanation of the language, look into `reference/` folder.
 Preferably read the poorly written `reference/documentation`.
 
-Sample programms can be found in `programms/` folder.
+Sample programs can be found in `programs/` folder.
