@@ -16,6 +16,9 @@ In CCL, each cells holds a **signed 2 byte integer** [-32768, +32767].
 Just like in brainf, overflowing is allowed,
 and it will simply result in the jump to the lowest negative / highest positive value.
 
+The stack does not have a size limit, and can store as much cells as you'd like.
+The only limit is the computer's RAM.
+
 ## Variables
 CCL has variables. Variables are read-only,
 so they can hold same range of values, as "cells" on the stack.
@@ -52,6 +55,9 @@ CCL only has an inline comment, which starts with `/`, and **ends on a newline**
 Newlines, tabs and spaces **are not important** and are simply ignored.
 It is possible to write code without using a single space or a newline.
 
+Important note: **code will not run if it contains any "illegal symbols"**.
+All symbols, that are not whitespace, not "name symbols" and not instructions
+are considered "illegal". Though, they are ignored in comments.
 
 # Stack
 This section covers instructions that affect the stack in one way or another.
