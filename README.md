@@ -1,7 +1,8 @@
 Quick info
 ==========
 
-Hello there! I am too lazy to document this thing properly. So here is some quick info.
+Hello there! I actually documented this thing. It's not the best documentation, but whatever.
+It's located in `reference/documentation`.
 
 Run the code in terminal with:
 ```
@@ -17,6 +18,7 @@ You will be able to run the code like this:
 CCL! <filepath> [-args...]
 ```
 
-For the explanation of the language (very undetailed), look into `reference/` folder.
+For the explanation of the language, look into `reference/` folder.
+Preferably read the poorly written `reference/documentation`.
 
 Sample programms can be found in `programms/` folder.
