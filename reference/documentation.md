@@ -11,7 +11,7 @@ New "cells" appear on top of the stack, while older "cells" are on bottom.
 
 Another difference is the maximum and minimum value of each "cell".
 In brainf, each cell holds an unsigned 1 byte integer [0, 255].
-In CCL, each cells holds a **signed 2 byte integer** [-32768, +32767].
+In CCL, each cell holds a **signed 2 byte integer** [-32768, +32767].
 
 Just like in brainf, overflowing is allowed,
 and it will simply result in the jump to the lowest negative / highest positive value.
@@ -275,6 +275,14 @@ Can only be used inside of procedure block.
 **Does not pop any cells from the stack**.
 It creates a local variable with provided name and initial value of 0.
 Referring to that variable after will refer to this local variable.
+
+If local variable with such name already exists, **its value will be reset to 0**.
+
+Local variables are stored separately from the global variables,
+so it is possible for global and local variables to have same name.
+
+Also, local variables are unique for each procedure,
+so several procedures can use unique local variables with same name.
 
 All local variables get deleted after procedure ends.
 
