@@ -404,7 +404,7 @@ P{...}
 ```
 
 ## Call: `@P`
-Takes a parameter (on the right). Parameter is a variable name, `_` is not allowed.
+Takes a parameter (on the right). Parameter is a procedure name, `_` is not allowed.
 
 Calls a procedure with a provided name.
 After all the code inside of procedure is executed, program continues from this instruction.
