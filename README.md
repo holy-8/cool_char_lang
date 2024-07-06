@@ -1,24 +1,23 @@
-Quick info
-==========
+# What's this?
+I've decided to rewrite the interpreter from scratch, as there's a lot to be fixed and improved.
+I also want to include some other things, such as unittests and better documentation.
 
-Hello there! I actually documented this thing. It's not the best documentation, but whatever.
-It's located in `reference/documentation`.
+Another idea i have is to make it easier to run, as well as multi-platform.
 
-Run the code in terminal with:
-```
-python /cool_char_lang/interpreter/main.py <filepath> [-args...]
-```
 
-If you're not too lazy, you can do the following:
-1. Add `<your_path>/cool_char_lang/bat` to PATH environment variable.
-2. Change `<your_path>` in the `.bat` (and in PATH variable) script to the **full path** to `cool_char_lang` folder.
+# Layout
+For documentation, view `(Doc/documentation.md)[https://github.com/holy-8/cool_char_lang/blob/2.0/Doc/documentation.md]`.
+There are also two more files: `ascii.txt` contains the ASCII character table,
+and `symbols.txt` is a list of instructions and their classes in code.
 
-You will be able to run the code like this:
-```
-CCL! <filepath> [-args...]
-```
+Example programs can be found in `(Examples/)[https://github.com/holy-8/cool_char_lang/blob/2.0/Examples]`.
+I will sort them out later, and more will be added.
 
-For the explanation of the language, look into `reference/` folder.
-Preferably read the poorly written `reference/documentation`.
+`(Interpreter/)[https://github.com/holy-8/cool_char_lang/blob/2.0/Interpreter]` is the source code of the interpreter.
+For now, i will be working on it, so its inner structure will change.
 
-Sample programs can be found in `programs/` folder.
+
+# C implementation
+One of my friends also decided to make a C implementation of this language, called `3CL`.
+You can find it `(here)[https://github.com/nakidai/3cl]`.
+Thanks!
