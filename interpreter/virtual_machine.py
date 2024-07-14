@@ -115,7 +115,8 @@ class Stack:
         self.size = len(self.cells)
 
     def __repr__(self) -> str:
-        return '\n'.join([str(cell) for cell in self.cells[::-1]])
+        str_cells = map(str, self.cells)
+        return '\n'.join(cell for cell in str_cells)
 
     def __getattribute__(self, name: str) -> Any:
         if name == 'top':
@@ -158,3 +159,9 @@ class Stack:
             return
         reverse_index = self.size - cell.value
         self.cells = self.cells[:reverse_index] + self.cells[reverse_index:][::-1]
+
+a = Stack()
+a.push(Cell(1))
+a.push(Cell(22))
+a.push(Cell(3))
+print(a)
