@@ -167,7 +167,7 @@ If parameter is a variable name, it reverses the variable's value cells on the s
 If parameter is `_`, reverses the entire stack.
 
 Variable with a given name must exist.
-Variable's value must not be less than 1, and must not exceed the amount of elements on the stack.
+Variable's value must not be less than 0, and must not exceed the amount of elements on the stack.
 
 ### Usage example
 Code:
