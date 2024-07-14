@@ -13,11 +13,5 @@ and [`symbols.txt`](Doc/symbols.txt) is a list of instructions and their relativ
 Example programs can be found in [`Examples/`](Examples/).
 I will sort them out later, and more will be added.
 
-[`Interpreter/`](Interpreter/) is the source code of the interpreter.
+[`Src/`](Src/) is the source code of the interpreter.
 For now, i will be working on it, so its inner structure will change.
-
-
-# C implementation
-One of my friends also decided to make a C implementation of this language, called `3CL`.
-You can find it [`here`](https://github.com/nakidai/3cl).
-Thanks!

@@ -160,8 +160,3 @@ class Stack:
         reverse_index = self.size - cell.value
         self.cells = self.cells[:reverse_index] + self.cells[reverse_index:][::-1]
 
-a = Stack()
-a.push(Cell(1))
-a.push(Cell(22))
-a.push(Cell(3))
-print(a)
