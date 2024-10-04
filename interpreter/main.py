@@ -162,5 +162,4 @@ def interpreter():
 
 
 if __name__ == '__main__':
-    os.system('cls')
     interpreter()
